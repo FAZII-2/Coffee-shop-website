@@ -1,0 +1,237 @@
+/* ================================================================
+   BREWED & BEYOND — ANIMATIONS
+   animations.css — Keyframes · Scroll-driven · Reveal · Motion
+   ================================================================ */
+
+/* ── Keyframes ────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,125,58,0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(201,125,58,0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes steam {
+  0%   { transform: translateY(0) scaleX(1); opacity: 0.6; }
+  50%  { transform: translateY(-20px) scaleX(1.3); opacity: 0.3; }
+  100% { transform: translateY(-40px) scaleX(0.8); opacity: 0; }
+}
+
+@keyframes counter-fill {
+  from { width: 0%; }
+  to   { width: var(--target-width); }
+}
+
+/* ── Page Entry Animations ────────────────────────────────────── */
+.animate-hero-title {
+  animation: fadeUp 0.9s var(--ease-out) 0.1s both;
+}
+
+.animate-hero-sub {
+  animation: fadeUp 0.9s var(--ease-out) 0.3s both;
+}
+
+.animate-hero-cta {
+  animation: fadeUp 0.9s var(--ease-out) 0.5s both;
+}
+
+/* ── Scroll Reveal ────────────────────────────────────────────── */
+/* Elements start invisible; JS adds .is-visible to trigger */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+}
+
+.reveal.from-left {
+  transform: translateX(-36px);
+}
+
+.reveal.from-right {
+  transform: translateX(36px);
+}
+
+.reveal.scale-up {
+  transform: scale(0.92);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered children */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 0.15s; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 0.25s; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 0.35s; }
+.stagger-children .reveal:nth-child(5) { transition-delay: 0.45s; }
+.stagger-children .reveal:nth-child(6) { transition-delay: 0.55s; }
+
+/* ── Scroll-Driven Parallax Hero ──────────────────────────────── */
+/* Uses Scroll-driven animations (Baseline 2024) with fallback */
+@supports (animation-timeline: scroll()) {
+  .hero-parallax-bg {
+    animation: hero-zoom linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 60vh;
+  }
+
+  @keyframes hero-zoom {
+    from { transform: scale(1.0) translateY(0); }
+    to   { transform: scale(1.08) translateY(60px); }
+  }
+}
+
+/* ── Scroll-Driven Carousel ───────────────────────────────────── */
+@supports (animation-timeline: view()) and (animation-range: entry) {
+  .menu-scroller > .menu-card {
+    animation: card-enter auto linear both;
+    animation-timeline: view(inline);
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes card-enter {
+    from { opacity: 0.4; scale: 0.88; }
+    to   { opacity: 1;   scale: 1; }
+  }
+}
+
+/* Fallback for carousel without scroll-driven animations */
+.menu-scroller > .menu-card.fallback-visible {
+  opacity: 1;
+  scale: 1;
+}
+
+/* ── Shimmer Button Effect ────────────────────────────────────── */
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.2) 50%,
+    transparent 60%
+  );
+  background-size: 200% auto;
+  opacity: 0;
+  transition: opacity var(--dur-fast);
+}
+
+.btn-shimmer:hover::after {
+  opacity: 1;
+  animation: shimmer 0.6s linear;
+}
+
+/* ── Floating Badge ───────────────────────────────────────────── */
+.float-badge {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Stat Counter Bar ─────────────────────────────────────────── */
+.stat-bar {
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--clr-caramel), var(--clr-gold));
+  width: 0;
+  transition: width 1.2s var(--ease-out);
+}
+
+.stat-bar.is-visible {
+  width: var(--target-width, 80%);
+}
+
+/* ── Nav Scroll State ─────────────────────────────────────────── */
+.navbar {
+  transition:
+    background var(--dur-slow) ease,
+    backdrop-filter var(--dur-slow) ease,
+    box-shadow var(--dur-slow) ease,
+    padding var(--dur-base) ease;
+}
+
+.navbar.scrolled {
+  background: rgba(14,6,0,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+/* ── Image Hover Zoom ─────────────────────────────────────────── */
+.img-zoom-wrap {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.img-zoom-wrap img {
+  transition: transform 0.6s var(--ease-out);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-zoom-wrap:hover img {
+  transform: scale(1.06);
+}
+
+/* ── Reduced Motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  html { scroll-behavior: auto; }
+}

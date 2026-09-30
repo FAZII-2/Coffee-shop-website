@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brewed & Beyond — Artisan Coffee Shop</title>
+  <meta name="description" content="Brewed & Beyond is a premium artisan coffee shop serving hand-crafted espresso, cold brews, and fresh pastries. Visit us for an extraordinary coffee experience.">
+  <meta name="theme-color" content="#1a0a00">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Brewed & Beyond — Artisan Coffee Shop">
+  <meta property="og:description" content="Premium artisan coffee, cold brews & freshly baked pastries.">
+  <meta property="og:type" content="website">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="assets/images/hero-bg.png" as="image" fetchpriority="high">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Inline filter styles for menu items -->
+  <style>
+    .filterable-item {
+      transition: opacity 0.35s ease, transform 0.35s ease, display 0.35s;
+    }
+    .hidden-item {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      position: absolute;
+    }
+    .show-item {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* About teaser image wrap */
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+    .about-float-badge {
+      position: absolute;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      background: linear-gradient(135deg, var(--clr-caramel), var(--clr-gold));
+      color: var(--clr-espresso);
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-float-badge .big-num {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-float-badge .small-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Gallery color placeholders when images are missing */
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .gp-1 { background: linear-gradient(135deg,#3d1c00,#6b3400); }
+    .gp-2 { background: linear-gradient(135deg,#2d1200,#5c2800); }
+    .gp-3 { background: linear-gradient(135deg,#4a2000,#7a3800); }
+    .gp-4 { background: linear-gradient(135deg,#1a0a00,#3d1c00); }
+    .gp-5 { background: linear-gradient(135deg,#2d1200,#4a2000); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════════ -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="Brewed & Beyond home">
+          <span class="nav-logo-script">Brewed &amp; Beyond</span>
+          <span class="nav-logo-sub">Artisan Coffee</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="index.html"   class="nav-link" aria-current="page">Home</a></li>
+          <li><a href="menu.html"    class="nav-link">Menu</a></li>
+          <li><a href="about.html"   class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);">
+          <a href="contact.html" class="btn btn-primary btn-sm hidden-mobile btn-shimmer">Reserve a Table</a>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="menu.html"    class="nav-link">Menu</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:var(--space-4)">Reserve a Table</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════ HERO ═════════════════════════════ -->
+    <section class="hero" aria-label="Hero section">
+      <div
+        class="hero-parallax-bg"
+        style="background-image: url('assets/images/hero-bg.png');"
+        role="img"
+        aria-label="Cozy coffee shop interior"
+      ></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <span class="hero-eyebrow animate-hero-title">Welcome to</span>
+        <h1 class="hero-title animate-hero-sub">
+          Every Cup Tells<br><em>a Story</em>
+        </h1>
+        <p class="hero-desc animate-hero-sub">
+          Hand-crafted espresso drinks, single-origin pour-overs, and freshly
+          baked pastries — made with love in the heart of the city.
+        </p>
+        <div class="hero-cta-group animate-hero-cta">
+          <a href="menu.html"    class="btn btn-primary btn-lg btn-shimmer">Explore Menu</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">Reserve a Table</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ STATS ════════════════════════════ -->
+    <section class="section-sm bg-roast">
+      <div class="container">
+        <div class="stats-grid stagger-children">
+          <div class="stat-item reveal">
+            <div class="stat-number" data-count="12" data-suffix="+">0+</div>
+            <div class="stat-label">Years of craft</div>
+          </div>
+          <div class="stat-item reveal">
+            <div class="stat-number" data-count="48" data-suffix="">0</div>
+            <div class="stat-label">Menu items</div>
+          </div>
+          <div class="stat-item reveal">
+            <div class="stat-number" data-count="500" data-suffix="+">0+</div>
+            <div class="stat-label">Happy guests daily</div>
+          </div>
+          <div class="stat-item reveal">
+            <div class="stat-number" data-count="98" data-suffix="%">0%</div>
+            <div class="stat-label">5-star reviews</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ ABOUT TEASER ═════════════════════ -->
+    <section class="section bg-espresso" id="about-teaser">
+      <div class="container">
+        <div class="grid-2" style="gap: var(--space-16);">
+          <div class="about-img-wrap reveal from-left">
+            <img
+              src="assets/images/about-barista.png"
+              alt="Barista crafting a latte with beautiful latte art"
+              width="600"
+              height="480"
+              loading="lazy"
+            >
+            <div class="about-float-badge float-badge">
+              <div class="big-num">12</div>
+              <div class="small-label">Years of<br>Passion</div>
+            </div>
+          </div>
+
+          <div class="reveal from-right" style="display:flex;flex-direction:column;justify-content:center;">
+            <span class="script-text">Our Story</span>
+            <h2 style="margin-bottom:var(--space-5);">Crafted with Passion, <br>Served with Soul</h2>
+            <p style="margin-bottom:var(--space-5);">
+              Brewed &amp; Beyond started as a single espresso cart in 2012 — a dream to bring
+              truly exceptional coffee to our neighborhood. Today, our cozy shop is a haven
+              for coffee lovers, remote workers, and those who simply love a perfect cup.
+            </p>
+            <p style="margin-bottom:var(--space-8);">
+              We source our beans directly from ethical farms in Ethiopia, Colombia, and
+              Guatemala — roasted in-house every morning so every sip is as fresh as it gets.
+            </p>
+            <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+              <a href="about.html" class="btn btn-primary btn-shimmer">Our Full Story</a>
+              <a href="menu.html"  class="btn btn-ghost">View Menu</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ FEATURED MENU ════════════════════ -->
+    <section class="section bg-dark" id="featured-menu">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="script-text">Our Specialties</span>
+          <h2>Featured Drinks &amp; Bites</h2>
+          <div class="divider"></div>
+          <p>Every item is crafted with premium ingredients and a lot of love.</p>
+        </div>
+
+        <div class="menu-scroller-wrap">
+          <div class="menu-scroller" role="list">
+
+            <!-- Card 1 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap">
+                <img class="menu-card-img" src="assets/images/menu-espresso.png" alt="Classic Espresso" loading="lazy">
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-gold">Signature</span>
+                </div>
+                <h3 class="menu-card-name">Classic Espresso</h3>
+                <p class="menu-card-desc">Rich, bold double shot with a thick golden crema. Our most iconic offering.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$4.50</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap">
+                <img class="menu-card-img" src="assets/images/menu-latte.png" alt="Iced Caramel Latte" loading="lazy">
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-gold">Fan Favorite</span>
+                </div>
+                <h3 class="menu-card-name">Iced Caramel Latte</h3>
+                <p class="menu-card-desc">Velvety espresso with house-made caramel syrup over ice. Pure bliss in a glass.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$6.50</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap">
+                <img class="menu-card-img" src="assets/images/menu-pastry.png" alt="Butter Croissant" loading="lazy">
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-green">Fresh Baked</span>
+                </div>
+                <h3 class="menu-card-name">Butter Croissant</h3>
+                <p class="menu-card-desc">Flaky, golden, and buttery. Baked fresh every morning by our in-house pastry chef.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$3.75</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#2d1200,#6b3400);display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                ❄️
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-gold">New</span>
+                </div>
+                <h3 class="menu-card-name">Nitro Cold Brew</h3>
+                <p class="menu-card-desc">Slow-steeped for 24 hours, nitrogen-infused for a creamy, cascading pour.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$7.00</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#3d2500,#7a5200);display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                🍵
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-green">Vegan</span>
+                </div>
+                <h3 class="menu-card-name">Matcha Oat Latte</h3>
+                <p class="menu-card-desc">Ceremonial-grade matcha whisked with creamy oat milk and a hint of vanilla.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$6.00</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="menu-card" role="listitem">
+              <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#1a0a00,#4a1000);display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                🍰
+              </div>
+              <div class="menu-card-body">
+                <div class="menu-card-tags">
+                  <span class="badge badge-red">Limited</span>
+                </div>
+                <h3 class="menu-card-name">Tiramisu Slice</h3>
+                <p class="menu-card-desc">House-made Italian tiramisu with our own espresso soak. Available until sold out.</p>
+                <div class="menu-card-footer">
+                  <span class="menu-card-price">$5.50</span>
+                  <a href="menu.html" class="btn btn-ghost btn-sm">Order</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:var(--space-12);">
+          <a href="menu.html" class="btn btn-outline btn-lg">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ GALLERY ══════════════════════════ -->
+    <section class="section bg-espresso" id="gallery">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="script-text">Our Space</span>
+          <h2>A Peek Inside</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder gp-1">☕</div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder gp-2">🫘</div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder gp-3">🥐</div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder gp-4">🌿</div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder gp-5">🎶</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TESTIMONIALS ═════════════════════ -->
+    <section class="section bg-roast" id="testimonials">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="script-text">Guest Love</span>
+          <h2>What Our Guests Say</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="grid-3 stagger-children">
+
+          <div class="testimonial-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testimonial-text">
+              "The best espresso I've had outside of Naples. The atmosphere is
+              perfectly cozy, and the staff remembers your name after one visit."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar-placeholder" aria-hidden="true">S</div>
+              <div>
+                <div class="testimonial-name">Sofia M.</div>
+                <div class="testimonial-role">Regular since 2019</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testimonial-text">
+              "I come here every morning before work. The nitro cold brew is
+              absolutely life-changing. This place has ruined all other coffee for me."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar-placeholder" aria-hidden="true">J</div>
+              <div>
+                <div class="testimonial-name">James K.</div>
+                <div class="testimonial-role">Coffee enthusiast</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testimonial-text">
+              "Fresh croissants, great WiFi, and the most comfortable armchairs.
+              I practically live here on weekends. The tiramisu deserves an award."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar-placeholder" aria-hidden="true">A</div>
+              <div>
+                <div class="testimonial-name">Aisha B.</div>
+                <div class="testimonial-role">Food blogger</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
+    <section class="cta-banner" aria-label="Visit us call to action">
+      <div class="container" style="position:relative;z-index:1;">
+        <div class="reveal">
+          <span class="script-text" style="font-size:1.8rem;">Come &amp; Visit Us</span>
+          <h2>Your Next Favorite<br>Moment Starts Here</h2>
+          <p style="margin:var(--space-4) auto var(--space-10);">
+            Open seven days a week. Pull up a chair, order your usual, and
+            let the day slow down the way it's supposed to.
+          </p>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-primary btn-lg btn-shimmer">Reserve a Table</a>
+            <a href="menu.html"    class="btn btn-outline btn-lg">Browse Menu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="nav-logo-script">Brewed &amp; Beyond</span>
+            <span class="nav-logo-sub">Artisan Coffee</span>
+          </a>
+          <p>A cozy corner of the city where great coffee meets great conversation. Since 2012.</p>
+          <div class="social-links" role="list" aria-label="Social media links">
+            <a href="#" class="social-link" role="listitem" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" role="listitem" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" role="listitem" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" role="listitem" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html"   class="footer-link">Home</a></li>
+            <li><a href="menu.html"    class="footer-link">Menu</a></li>
+            <li><a href="about.html"   class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Hours</div>
+          <div class="hours-list">
+            <div class="hours-row"><span class="day">Mon – Fri</span><span>7am – 9pm</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span>8am – 10pm</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span>9am – 8pm</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Find Us</div>
+          <address style="font-style:normal;">
+            <p style="max-width:none;margin-bottom:var(--space-3);">
+              24 Caramel Lane, Brew District<br>
+              New York, NY 10001
+            </p>
+            <a href="tel:+12125550199" class="footer-link">📞 (212) 555-0199</a><br>
+            <a href="mailto:hello@brewedandbeyond.com" class="footer-link">✉️ hello@brewedandbeyond.com</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Brewed &amp; Beyond. All rights reserved.</span>
+        <span>Made with ☕ &amp; ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

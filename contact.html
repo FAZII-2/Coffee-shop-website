@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Reservations — Brewed & Beyond</title>
+  <meta name="description" content="Reserve a table at Brewed & Beyond, get directions, check our hours, and get in touch with our team.">
+  <meta name="theme-color" content="#1a0a00">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1.3fr;
+        align-items: start;
+      }
+    }
+
+    .contact-info-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .form-card {
+      background: var(--clr-roast);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+    }
+
+    .form-card h2 {
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .form-card > p {
+      margin-bottom: var(--space-8);
+      font-size: var(--text-base);
+      max-width: none;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: var(--space-5) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--clr-cream);
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color var(--dur-base);
+    }
+
+    .faq-question:hover {
+      color: var(--clr-caramel);
+    }
+
+    .faq-icon {
+      font-size: 1.2rem;
+      transition: transform var(--dur-base) var(--ease-out);
+      flex-shrink: 0;
+      margin-left: var(--space-4);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out), padding 0.3s;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+    }
+
+    .faq-answer p {
+      padding-bottom: var(--space-5);
+      font-size: var(--text-sm);
+      max-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════════ -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="Brewed & Beyond home">
+          <span class="nav-logo-script">Brewed &amp; Beyond</span>
+          <span class="nav-logo-sub">Artisan Coffee</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html"   class="nav-link">Home</a></li>
+          <li><a href="menu.html"    class="nav-link">Menu</a></li>
+          <li><a href="about.html"   class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link" aria-current="page">Contact</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:var(--space-4);">
+          <a href="#reservation-form" class="btn btn-primary btn-sm hidden-mobile btn-shimmer">Reserve a Table</a>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="menu.html"    class="nav-link">Menu</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="#reservation-form" class="btn btn-primary" style="margin-top:var(--space-4)">Reserve Now</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════ PAGE HERO ════════════════════════ -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="script-text animate-hero-title">Get in Touch</span>
+        <h1 class="animate-hero-sub">Contact &amp; Reservations</h1>
+        <p class="animate-hero-sub" style="margin-inline:auto;max-width:48ch;">
+          Reserve your table, find our location, or simply drop us a message.
+          We'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ MAIN CONTACT SECTION ══════════════ -->
+    <section class="section bg-espresso">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- ─── Info Cards Left ─── -->
+          <div class="contact-info-stack reveal from-left">
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">📍</div>
+              <h4>Find Us</h4>
+              <address style="font-style:normal;">
+                <p style="max-width:none;margin-bottom:var(--space-2);">
+                  24 Caramel Lane, Brew District<br>
+                  New York, NY 10001
+                </p>
+                <a
+                  href="https://www.openstreetmap.org/#map=17/40.7506/-74.0032"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-ghost btn-sm"
+                  style="margin-top:var(--space-3);display:inline-flex;"
+                >
+                  Get Directions ↗
+                </a>
+              </address>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">🕐</div>
+              <h4>Opening Hours</h4>
+              <div class="hours-list">
+                <div class="hours-row"><span class="day">Monday – Friday</span><span>7:00 am – 9:00 pm</span></div>
+                <div class="hours-row"><span class="day">Saturday</span><span>8:00 am – 10:00 pm</span></div>
+                <div class="hours-row"><span class="day">Sunday</span><span>9:00 am – 8:00 pm</span></div>
+                <div class="hours-row"><span class="day">Public Holidays</span><span>10:00 am – 6:00 pm</span></div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">📞</div>
+              <h4>Call or Email</h4>
+              <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+                <a href="tel:+12125550199" class="footer-link" style="font-size:var(--text-base);color:var(--clr-cream);">
+                  📞 (212) 555-0199
+                </a>
+                <a href="mailto:hello@brewedandbeyond.com" class="footer-link" style="font-size:var(--text-base);color:var(--clr-cream);">
+                  ✉️ hello@brewedandbeyond.com
+                </a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon" aria-hidden="true">📱</div>
+              <h4>Follow Us</h4>
+              <p style="max-width:none;margin-bottom:var(--space-4);">Stay in the loop with daily specials, events, and latte art.</p>
+              <div class="social-links">
+                <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+                <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ─── Reservation Form Right ─── -->
+          <div class="form-card reveal from-right" id="reservation-form">
+            <span class="script-text" style="font-size:1.3rem;">Book Your Spot</span>
+            <h2>Reserve a Table</h2>
+            <p>Fill in the form and we'll confirm your reservation within 2 hours.</p>
+
+            <form id="reservation-form-el" novalidate aria-label="Table reservation form">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">Full Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    required
+                  >
+                  <span class="form-error-msg" id="error-name" role="alert">Please enter your full name.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  >
+                  <span class="form-error-msg" id="error-email" role="alert">Please enter a valid email.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="date">Date *</label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    class="form-input"
+                    required
+                  >
+                  <span class="form-error-msg" id="error-date" role="alert">Please choose a date from today or later.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="time">Preferred Time *</label>
+                  <select id="time" name="time" class="form-select" required>
+                    <option value="">Select a time</option>
+                    <option value="07:00">7:00 AM</option>
+                    <option value="08:00">8:00 AM</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                  </select>
+                  <span class="form-error-msg" id="error-time" role="alert">Please select a time.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="guests">Number of Guests *</label>
+                <select id="guests" name="guests" class="form-select" required>
+                  <option value="">How many guests?</option>
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="5">5 Guests</option>
+                  <option value="6">6 Guests</option>
+                  <option value="7">7 Guests</option>
+                  <option value="8">8 Guests</option>
+                  <option value="10">10 Guests</option>
+                  <option value="15">15 Guests (private event)</option>
+                  <option value="20">20 Guests (private event)</option>
+                </select>
+                <span class="form-error-msg" id="error-guests" role="alert">Please select the number of guests.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="notes">Special Requests <span style="color:var(--clr-muted);font-weight:400;">(optional)</span></label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  class="form-textarea"
+                  placeholder="Dietary requirements, celebration, accessibility needs…"
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-shimmer" style="width:100%;justify-content:center;">
+                ☕ Confirm Reservation
+              </button>
+
+              <p style="text-align:center;font-size:var(--text-xs);margin-top:var(--space-4);max-width:none;">
+                We'll send a confirmation to your email. No payment required.
+              </p>
+            </form>
+
+            <!-- Success Message -->
+            <div class="form-success" id="form-success" aria-live="polite">
+              <div class="form-success-icon" aria-hidden="true">✓</div>
+              <h3 style="color:var(--clr-cream);">Reservation Received!</h3>
+              <p style="max-width:none;text-align:center;">
+                Thank you! We've received your reservation and will send a
+                confirmation email within 2 hours. We can't wait to see you! ☕
+              </p>
+              <a href="menu.html" class="btn btn-primary btn-shimmer" style="margin-top:var(--space-4);">
+                Browse Our Menu
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ MAP ═══════════════════════════════ -->
+    <section class="section-sm bg-roast">
+      <div class="container">
+        <div class="section-header reveal" style="margin-bottom:var(--space-10);">
+          <span class="script-text">Come Find Us</span>
+          <h2>We're in the Brew District</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="map-wrap reveal">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0100%2C40.7460%2C-73.9960%2C40.7550&layer=mapnik&marker=40.7506%2C-74.0032"
+            title="Brewed & Beyond location map"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p style="text-align:center;margin-top:var(--space-4);max-width:none;">
+          📍 24 Caramel Lane, Brew District, New York, NY 10001 —
+          <a
+            href="https://www.openstreetmap.org/#map=17/40.7506/-74.0032"
+            target="_blank"
+            rel="noopener"
+            style="color:var(--clr-caramel);"
+          >Open in maps ↗</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ FAQ ═══════════════════════════════ -->
+    <section class="section bg-espresso">
+      <div class="container" style="max-width:780px;">
+        <div class="section-header reveal">
+          <span class="script-text">Questions?</span>
+          <h2>Frequently Asked</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="reveal">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do I need a reservation to visit?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Walk-ins are always welcome! We reserve roughly half of our seating for walk-in guests. However, if you're coming with a group of 4 or more, we strongly recommend a reservation to guarantee your preferred time.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you have WiFi?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! Free high-speed WiFi is available for all guests. The password is on your receipt or just ask any of our baristas. We love being your remote office on weekdays.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I host a private event?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! We offer private bookings for groups of 15–60 people on Monday–Wednesday evenings. This includes a custom menu, dedicated staff, and a beautiful setting. Email us at events@brewedandbeyond.com for details.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer dairy-free and vegan options?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! We stock oat milk, almond milk, coconut milk, and soy milk at no extra charge. Many of our pastries and drinks are also vegan — look for the 🌿 vegan badge on the menu.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Where do your coffee beans come from?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We source single-origin beans directly from small family farms in Yirgacheffe (Ethiopia), Huila (Colombia), and Antigua (Guatemala). We visit our farm partners annually and pay a price well above the Fairtrade premium.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Is there parking nearby?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>There is a public parking garage one block north on Blend Street (validated for 2 hours with any purchase). Street parking is available on Caramel Lane after 6pm on weekdays and all day on weekends. We're also right next to the 6 train stop at 28th St.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="nav-logo-script">Brewed &amp; Beyond</span>
+            <span class="nav-logo-sub">Artisan Coffee</span>
+          </a>
+          <p>A cozy corner of the city where great coffee meets great conversation. Since 2012.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html"   class="footer-link">Home</a></li>
+            <li><a href="menu.html"    class="footer-link">Menu</a></li>
+            <li><a href="about.html"   class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Hours</div>
+          <div class="hours-list">
+            <div class="hours-row"><span class="day">Mon – Fri</span><span>7am – 9pm</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span>8am – 10pm</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span>9am – 8pm</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Find Us</div>
+          <address style="font-style:normal;">
+            <p style="max-width:none;margin-bottom:var(--space-3);">24 Caramel Lane, Brew District<br>New York, NY 10001</p>
+            <a href="tel:+12125550199" class="footer-link">📞 (212) 555-0199</a>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Brewed &amp; Beyond. All rights reserved.</span>
+        <span>Made with ☕ &amp; ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+  <script>
+    // ── FAQ Accordion ──────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked (if was closed)
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

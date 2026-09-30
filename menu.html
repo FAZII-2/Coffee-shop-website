@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — Brewed & Beyond</title>
+  <meta name="description" content="Explore Brewed & Beyond's full menu of artisan espresso drinks, cold brews, smoothies, and freshly baked pastries.">
+  <meta name="theme-color" content="#1a0a00">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* Filter animation states */
+    .filterable-item {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .hidden-item {
+      display: none;
+    }
+    .show-item {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Menu grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════════ -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="Brewed & Beyond home">
+          <span class="nav-logo-script">Brewed &amp; Beyond</span>
+          <span class="nav-logo-sub">Artisan Coffee</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="index.html"   class="nav-link">Home</a></li>
+          <li><a href="menu.html"    class="nav-link" aria-current="page">Menu</a></li>
+          <li><a href="about.html"   class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div style="display:flex;align-items:center;gap:var(--space-4);">
+          <a href="contact.html" class="btn btn-primary btn-sm hidden-mobile btn-shimmer">Reserve a Table</a>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="menu.html"    class="nav-link">Menu</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:var(--space-4)">Reserve a Table</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════ PAGE HERO ════════════════════════ -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="script-text animate-hero-title">What We Serve</span>
+        <h1 class="animate-hero-sub">Our Full Menu</h1>
+        <p class="animate-hero-sub" style="margin-inline:auto;max-width:50ch;">
+          From sunrise espresso to afternoon cold brew — every item crafted
+          from the finest ingredients, with care.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ FILTER + MENU ════════════════════ -->
+    <section class="section bg-espresso">
+      <div class="container">
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs" role="tablist" aria-label="Menu categories">
+          <button class="filter-tab active" data-filter="all"       role="tab" aria-selected="true">All Items</button>
+          <button class="filter-tab"        data-filter="espresso"  role="tab">Espresso</button>
+          <button class="filter-tab"        data-filter="cold-brew" role="tab">Cold Brew</button>
+          <button class="filter-tab"        data-filter="specialty" role="tab">Specialty</button>
+          <button class="filter-tab"        data-filter="pastry"    role="tab">Pastries</button>
+          <button class="filter-tab"        data-filter="smoothie"  role="tab">Smoothies</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid stagger-children" id="menu-grid">
+
+          <!-- ─── ESPRESSO ─── -->
+          <article class="menu-card filterable-item reveal" data-category="espresso">
+            <div class="menu-card-img-wrap">
+              <img class="menu-card-img" src="assets/images/menu-espresso.png" alt="Classic Espresso" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Signature</span></div>
+              <h2 class="menu-card-name">Classic Espresso</h2>
+              <p class="menu-card-desc">Rich, bold double shot with a thick golden crema. Our most iconic offering.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$4.50</span>
+                <span class="badge badge-gold">Solo / Doppio</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="espresso">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#3d1c00,#7a4010);display:flex;align-items:center;justify-content:center;font-size:3rem;">☕</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Fan Fave</span></div>
+              <h2 class="menu-card-name">Flat White</h2>
+              <p class="menu-card-desc">Microfoam milk over a double ristretto. Silky, smooth, and intensely satisfying.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$5.50</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="espresso">
+            <div class="menu-card-img-wrap">
+              <img class="menu-card-img" src="assets/images/menu-latte.png" alt="Caramel Latte" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Popular</span></div>
+              <h2 class="menu-card-name">Caramel Latte</h2>
+              <p class="menu-card-desc">Espresso with steamed milk and house-made caramel syrup. Hot or iced.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.00</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="espresso">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#2d1200,#5c2800);display:flex;align-items:center;justify-content:center;font-size:3rem;">🌸</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">New</span></div>
+              <h2 class="menu-card-name">Lavender Macchiato</h2>
+              <p class="menu-card-desc">Espresso marked with lavender-infused oat milk foam. Floral and delicate.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.50</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── COLD BREW ─── -->
+          <article class="menu-card filterable-item reveal" data-category="cold-brew">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#0e0600,#3d1c00);display:flex;align-items:center;justify-content:center;font-size:3rem;">❄️</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Signature</span></div>
+              <h2 class="menu-card-name">Nitro Cold Brew</h2>
+              <p class="menu-card-desc">24-hour steep, nitrogen-infused for a creamy cascading texture. No ice needed.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$7.00</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="cold-brew">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#1a0a00,#4a2000);display:flex;align-items:center;justify-content:center;font-size:3rem;">🥛</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-green">Vegan</span></div>
+              <h2 class="menu-card-name">Vanilla Sweet Cream Cold Brew</h2>
+              <p class="menu-card-desc">Cold brew topped with house-made oat vanilla sweet cream. Lightly sweetened perfection.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.75</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="cold-brew">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#2d1200,#5c2800);display:flex;align-items:center;justify-content:center;font-size:3rem;">🍊</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Seasonal</span></div>
+              <h2 class="menu-card-name">Orange Cold Brew Tonic</h2>
+              <p class="menu-card-desc">Cold brew poured over tonic water with fresh orange zest. Bright and refreshing.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.00</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SPECIALTY ─── -->
+          <article class="menu-card filterable-item reveal" data-category="specialty">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#3d2500,#7a5200);display:flex;align-items:center;justify-content:center;font-size:3rem;">🍵</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-green">Vegan</span></div>
+              <h2 class="menu-card-name">Matcha Oat Latte</h2>
+              <p class="menu-card-desc">Ceremonial-grade matcha whisked with creamy oat milk and a hint of vanilla.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.00</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="specialty">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#2a1a00,#6b4400);display:flex;align-items:center;justify-content:center;font-size:3rem;">🍫</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">Indulgent</span></div>
+              <h2 class="menu-card-name">Dark Chocolate Mocha</h2>
+              <p class="menu-card-desc">Espresso with 70% dark chocolate ganache and steamed milk. Decadently rich.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$6.50</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── PASTRIES ─── -->
+          <article class="menu-card filterable-item reveal" data-category="pastry">
+            <div class="menu-card-img-wrap">
+              <img class="menu-card-img" src="assets/images/menu-pastry.png" alt="Butter Croissant" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-green">Fresh Baked</span></div>
+              <h2 class="menu-card-name">Butter Croissant</h2>
+              <p class="menu-card-desc">Flaky, golden, and buttery. Baked fresh each morning by our pastry chef.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$3.75</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="pastry">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#1a0a00,#4a1000);display:flex;align-items:center;justify-content:center;font-size:3rem;">🍰</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-red">Limited</span></div>
+              <h2 class="menu-card-name">Tiramisu Slice</h2>
+              <p class="menu-card-desc">House-made Italian tiramisu with our own espresso soak. Available until sold out.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$5.50</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="pastry">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#3d2500,#7a4a10);display:flex;align-items:center;justify-content:center;font-size:3rem;">🍩</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-gold">House Made</span></div>
+              <h2 class="menu-card-name">Cinnamon Roll</h2>
+              <p class="menu-card-desc">Soft, pillowy cinnamon roll glazed with cream cheese frosting. Soul-warming.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$4.25</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SMOOTHIES ─── -->
+          <article class="menu-card filterable-item reveal" data-category="smoothie">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#004a2a,#00783e);display:flex;align-items:center;justify-content:center;font-size:3rem;">🥭</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-green">Vegan</span></div>
+              <h2 class="menu-card-name">Tropical Sunrise</h2>
+              <p class="menu-card-desc">Mango, pineapple, coconut milk and a squeeze of lime. Pure tropical bliss.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$7.50</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card filterable-item reveal" data-category="smoothie">
+            <div class="menu-card-img-wrap" style="height:200px;background:linear-gradient(135deg,#4a0030,#900060);display:flex;align-items:center;justify-content:center;font-size:3rem;">🫐</div>
+            <div class="menu-card-body">
+              <div class="menu-card-tags"><span class="badge badge-green">Antioxidant</span></div>
+              <h2 class="menu-card-name">Berry Boost</h2>
+              <p class="menu-card-desc">Mixed berries, acai, banana, and almond milk blended into a vibrant powerhouse.</p>
+              <div class="menu-card-footer">
+                <span class="menu-card-price">$7.50</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Allergy Note ─── -->
+    <section class="section-sm bg-roast">
+      <div class="container text-center">
+        <p style="margin-inline:auto;">
+          🌿 <strong style="color:var(--clr-cream)">Dietary info:</strong> Items marked <em>Vegan</em> contain no animal products.
+          Please inform our team of any allergies. We handle nuts, dairy, and gluten on site.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="nav-logo-script">Brewed &amp; Beyond</span>
+            <span class="nav-logo-sub">Artisan Coffee</span>
+          </a>
+          <p>A cozy corner of the city where great coffee meets great conversation. Since 2012.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html"   class="footer-link">Home</a></li>
+            <li><a href="menu.html"    class="footer-link">Menu</a></li>
+            <li><a href="about.html"   class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Hours</div>
+          <div class="hours-list">
+            <div class="hours-row"><span class="day">Mon – Fri</span><span>7am – 9pm</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span>8am – 10pm</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span>9am – 8pm</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Find Us</div>
+          <address style="font-style:normal;">
+            <p style="max-width:none;margin-bottom:var(--space-3);">24 Caramel Lane, Brew District<br>New York, NY 10001</p>
+            <a href="tel:+12125550199" class="footer-link">📞 (212) 555-0199</a>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Brewed &amp; Beyond. All rights reserved.</span>
+        <span>Made with ☕ &amp; ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/menu-filter.js"></script>
+</body>
+</html>

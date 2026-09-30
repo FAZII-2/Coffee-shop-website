@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Brewed & Beyond</title>
+  <meta name="description" content="Learn the story behind Brewed & Beyond — from a humble espresso cart to a beloved neighborhood coffee destination since 2012.">
+  <meta name="theme-color" content="#1a0a00">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .value-card {
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      background: var(--clr-roast);
+      border: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+      transition: transform var(--dur-base) var(--ease-out);
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+
+    .value-card h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+    }
+
+    .value-card p {
+      font-size: var(--text-sm);
+      max-width: none;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: var(--space-10);
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--clr-caramel), var(--clr-gold), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-10);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--space-10) * -1 - 5px);
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--clr-caramel);
+      border: 3px solid var(--clr-espresso);
+      box-shadow: 0 0 0 3px rgba(201,125,58,0.3);
+    }
+
+    .timeline-year {
+      font-family: var(--font-script);
+      font-size: 1.4rem;
+      color: var(--clr-gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .timeline-item h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .timeline-item p {
+      max-width: 55ch;
+    }
+
+    /* Team avatar placeholder gradients */
+    .avatar-bg-1 { background: linear-gradient(135deg,#c97d3a,#d4a046); }
+    .avatar-bg-2 { background: linear-gradient(135deg,#3d1c00,#7a3800); }
+    .avatar-bg-3 { background: linear-gradient(135deg,#1a0a00,#4a2000); }
+    .avatar-bg-4 { background: linear-gradient(135deg,#2d1200,#5c2800); }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--clr-espresso);
+    }
+
+    .avatar-placeholder.light {
+      color: var(--clr-cream);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════════ -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="Brewed & Beyond home">
+          <span class="nav-logo-script">Brewed &amp; Beyond</span>
+          <span class="nav-logo-sub">Artisan Coffee</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html"   class="nav-link">Home</a></li>
+          <li><a href="menu.html"    class="nav-link">Menu</a></li>
+          <li><a href="about.html"   class="nav-link" aria-current="page">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:var(--space-4);">
+          <a href="contact.html" class="btn btn-primary btn-sm hidden-mobile btn-shimmer">Reserve a Table</a>
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="menu.html"    class="nav-link">Menu</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:var(--space-4)">Reserve a Table</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════ PAGE HERO ════════════════════════ -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="script-text animate-hero-title">Who We Are</span>
+        <h1 class="animate-hero-sub">Our Story</h1>
+        <p class="animate-hero-sub" style="margin-inline:auto;max-width:52ch;">
+          Born from a love of craft coffee and community — Brewed &amp; Beyond
+          has been a neighborhood staple since 2012.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ STORY SECTION ════════════════════ -->
+    <section class="section bg-espresso">
+      <div class="container">
+        <div class="grid-2" style="gap:var(--space-16);">
+          <div class="reveal from-left">
+            <div style="border-radius:var(--radius-xl);overflow:hidden;height:500px;position:relative;">
+              <img
+                src="assets/images/about-barista.png"
+                alt="Our founder Marco creating latte art"
+                style="width:100%;height:100%;object-fit:cover;"
+                loading="lazy"
+              >
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,6,0,0.5) 0%,transparent 60%);"></div>
+            </div>
+          </div>
+
+          <div class="reveal from-right" style="display:flex;flex-direction:column;justify-content:center;">
+            <span class="script-text">From Cart to Community</span>
+            <h2 style="margin-bottom:var(--space-6);">A Cup, a Dream, and a Cart on the Corner</h2>
+            <p style="margin-bottom:var(--space-4);">
+              In 2012, Marco &amp; Elena Cortez set up a small espresso cart outside
+              their apartment building with one dream: to make coffee worth
+              waking up for. Word spread quickly. The line grew. And before
+              long, they turned that cart into a proper shop.
+            </p>
+            <p style="margin-bottom:var(--space-4);">
+              Today, Brewed &amp; Beyond is more than a coffee shop — it's a daily ritual
+              for hundreds of guests, a second office for remote workers, and the
+              backdrop for countless first dates, late-night study sessions, and
+              lazy Sunday mornings.
+            </p>
+            <p style="margin-bottom:var(--space-8);">
+              We source directly from small farms in Ethiopia, Colombia, and Guatemala,
+              roasting every batch in-house each morning. Because coffee this good
+              deserves to be fresh.
+            </p>
+            <a href="contact.html" class="btn btn-primary btn-shimmer" style="align-self:flex-start;">
+              Come Visit Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ VALUES ════════════════════════════ -->
+    <section class="section bg-roast">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="script-text">What Drives Us</span>
+          <h2>Our Core Values</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="values-grid stagger-children">
+          <div class="value-card reveal">
+            <span class="value-icon">🫘</span>
+            <h3>Craft First</h3>
+            <p>Every drink is made with intention. No shortcuts, no compromises — just pure coffee mastery.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="value-icon">🌱</span>
+            <h3>Sustainably Sourced</h3>
+            <p>We work directly with ethical farms and pay fair prices — good for farmers, great for your cup.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="value-icon">🏘️</span>
+            <h3>Community Rooted</h3>
+            <p>We're not a chain — we're your neighbors. Every dollar supports local jobs and local love.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="value-icon">✨</span>
+            <h3>Experience Driven</h3>
+            <p>From the music we play to the cups we pour, every detail is designed to make your visit special.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TIMELINE ══════════════════════════ -->
+    <section class="section bg-espresso">
+      <div class="container">
+        <div class="grid-2" style="gap:var(--space-16);">
+          <div class="reveal">
+            <span class="script-text">Our Journey</span>
+            <h2 style="margin-bottom:var(--space-12);">Built Year by Year</h2>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2012</div>
+                <h3>The Espresso Cart</h3>
+                <p>Marco &amp; Elena launch a humble espresso cart outside their apartment. The line wraps around the block within a week.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2014</div>
+                <h3>Our First Café</h3>
+                <p>We sign a lease on 24 Caramel Lane and open our first proper café with 8 seats and a whole lot of heart.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2017</div>
+                <h3>In-House Roastery</h3>
+                <p>We install our own 12kg roaster and begin roasting single-origin beans fresh every morning.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2020</div>
+                <h3>Through the Storm</h3>
+                <p>We pivoted to takeaway-only and survived. Our community showed up for us, and we'll never forget it.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <h3>Full Renovation &amp; Expansion</h3>
+                <p>A full shop renovation, 60 seats, a dedicated cold brew bar, and our first pastry kitchen.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="reveal from-right" style="display:flex;flex-direction:column;justify-content:center;gap:var(--space-6);">
+            <div class="glass-card" style="padding:var(--space-8);">
+              <div class="stat-number" data-count="12" data-suffix=" yrs" style="font-size:var(--text-5xl);color:var(--clr-gold);">0 yrs</div>
+              <div class="stat-label">Serving the community</div>
+            </div>
+            <div class="glass-card" style="padding:var(--space-8);">
+              <div class="stat-number" data-count="8" data-suffix=" staff" style="font-size:var(--text-5xl);color:var(--clr-gold);">0 staff</div>
+              <div class="stat-label">Passionate baristas</div>
+            </div>
+            <div class="glass-card" style="padding:var(--space-8);">
+              <div class="stat-number" data-count="3" data-suffix=" origins" style="font-size:var(--text-5xl);color:var(--clr-gold);">0 origins</div>
+              <div class="stat-label">Direct-trade coffee farms</div>
+            </div>
+            <div class="glass-card" style="padding:var(--space-8);">
+              <div class="stat-number" data-count="500" data-suffix="+" style="font-size:var(--text-5xl);color:var(--clr-gold);">0+</div>
+              <div class="stat-label">Cups served daily</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TEAM ══════════════════════════════ -->
+    <section class="section bg-roast">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="script-text">The People Behind the Pour</span>
+          <h2>Meet Our Team</h2>
+          <div class="divider"></div>
+          <p>Every great cup starts with a person who genuinely cares.</p>
+        </div>
+
+        <div class="grid-4 stagger-children">
+
+          <div class="team-card reveal">
+            <div class="team-avatar-wrap">
+              <div class="avatar-placeholder avatar-bg-1">M</div>
+            </div>
+            <div class="team-name">Marco Cortez</div>
+            <div class="team-role">Co-Founder &amp; Head Roaster</div>
+            <p class="team-bio">Trained in Naples, obsessed with Ethiopian single-origins, and believes espresso is a lifestyle, not a drink.</p>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar-wrap">
+              <div class="avatar-placeholder avatar-bg-2 light">E</div>
+            </div>
+            <div class="team-name">Elena Cortez</div>
+            <div class="team-role">Co-Founder &amp; Pastry Chef</div>
+            <p class="team-bio">Classically trained at Le Cordon Bleu Paris. Her croissants have caused people to move neighborhoods.</p>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar-wrap">
+              <div class="avatar-placeholder avatar-bg-3 light">J</div>
+            </div>
+            <div class="team-name">James Okafor</div>
+            <div class="team-role">Head Barista</div>
+            <p class="team-bio">2023 regional latte art champion. Passionate about cold brew science and teaching the next generation.</p>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar-wrap">
+              <div class="avatar-placeholder avatar-bg-4 light">A</div>
+            </div>
+            <div class="team-name">Aisha Patel</div>
+            <div class="team-role">Café Manager</div>
+            <p class="team-bio">Keeps everything running with warmth and precision. If you're a regular, she already knows your order.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="container" style="position:relative;z-index:1;">
+        <div class="reveal">
+          <span class="script-text" style="font-size:1.8rem;">We'd Love to See You</span>
+          <h2>Come Be Part of Our Story</h2>
+          <p style="margin:var(--space-4) auto var(--space-10);">
+            Whether it's your first visit or your thousandth — there's always a seat and a perfect cup waiting for you.
+          </p>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-primary btn-lg btn-shimmer">Reserve a Table</a>
+            <a href="menu.html"    class="btn btn-outline btn-lg">See Our Menu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="nav-logo-script">Brewed &amp; Beyond</span>
+            <span class="nav-logo-sub">Artisan Coffee</span>
+          </a>
+          <p>A cozy corner of the city where great coffee meets great conversation. Since 2012.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html"   class="footer-link">Home</a></li>
+            <li><a href="menu.html"    class="footer-link">Menu</a></li>
+            <li><a href="about.html"   class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Hours</div>
+          <div class="hours-list">
+            <div class="hours-row"><span class="day">Mon – Fri</span><span>7am – 9pm</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span>8am – 10pm</span></div>
+            <div class="hours-row"><span class="day">Sunday</span><span>9am – 8pm</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Find Us</div>
+          <address style="font-style:normal;">
+            <p style="max-width:none;margin-bottom:var(--space-3);">24 Caramel Lane, Brew District<br>New York, NY 10001</p>
+            <a href="tel:+12125550199" class="footer-link">📞 (212) 555-0199</a>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Brewed &amp; Beyond. All rights reserved.</span>
+        <span>Made with ☕ &amp; ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
